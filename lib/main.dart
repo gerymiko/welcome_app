@@ -30,15 +30,13 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
 
-  void _incrementCounter() {
-    setState(() {
+  void _incrementCounter({int? setValue}) {
+    if (setValue != null) {
+      _counter = setValue;
+    } else {
       _counter++;
-    });
-  }
-
-  @override
-  void initState() {
-    super.initState();
+    }
+    setState(() {});
   }
 
   @override
@@ -67,18 +65,23 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
         ),
       ),
-      floatingActionButton: Container(
-        height: 60,
-        width: 60,
-        decoration: BoxDecoration(
-          color: Colors.amber,
-          borderRadius: BorderRadius.circular(40),
-        ),
-        child: const Center(
-          child: Icon(
-            Icons.add,
-            size: 50,
-            color: Colors.white,
+      floatingActionButton: InkWell(
+        onTap: () {
+          print("Gesture detector");
+        },
+        child: Container(
+          height: 60,
+          width: 60,
+          decoration: BoxDecoration(
+            color: Colors.amber,
+            borderRadius: BorderRadius.circular(40),
+          ),
+          child: const Center(
+            child: Icon(
+              Icons.add,
+              size: 50,
+              color: Colors.white,
+            ),
           ),
         ),
       ),
